@@ -194,6 +194,11 @@ func TestCreateAccountAPI(t *testing.T) {
 	}
 }
 
+// TODO: add listAccountAPI unit tests
+func TestListAccountAPI(t *testing.T) {
+
+}
+
 func randomAccount() db.Account {
 	return db.Account{
 		ID:       util.RandomInt(1, 1000),
