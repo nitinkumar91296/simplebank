@@ -11,8 +11,10 @@ import (
 )
 
 func createRandomAccount(t *testing.T) Account {
+	user := createRandomUser(t)
+
 	arg := CreateAccountParams{
-		Owner:    util.RandomOwner(),
+		Owner:    user.Username,
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
@@ -37,9 +39,7 @@ func TestCreateAccount(t *testing.T) {
 }
 
 func TestGetAccount(t *testing.T) {
-	// create account
 	account1 := createRandomAccount(t)
-	// get and compare same account
 	account2, err := testQueries.GetAccount(context.Background(), account1.ID)
 
 	require.NoError(t, err)
@@ -53,7 +53,6 @@ func TestGetAccount(t *testing.T) {
 }
 
 func TestUpdateAccount(t *testing.T) {
-	// create account
 	account1 := createRandomAccount(t)
 
 	arg := UpdateAccountParams{
@@ -61,7 +60,6 @@ func TestUpdateAccount(t *testing.T) {
 		Balance: util.RandomMoney(),
 	}
 
-	// update account balance
 	account2, err := testQueries.UpdateAccount(context.Background(), arg)
 
 	require.NoError(t, err)
@@ -75,13 +73,10 @@ func TestUpdateAccount(t *testing.T) {
 }
 
 func TestDeleteAccount(t *testing.T) {
-	// create account
 	account1 := createRandomAccount(t)
-	// delete the account
 	err := testQueries.DeleteAccount(context.Background(), account1.ID)
 
 	require.NoError(t, err)
-	// check if the account is deleted or not
 	account2, err := testQueries.GetAccount(context.Background(), account1.ID)
 	require.Error(t, err)
 	require.EqualError(t, err, sql.ErrNoRows.Error())
@@ -90,7 +85,6 @@ func TestDeleteAccount(t *testing.T) {
 }
 
 func TestListAccounts(t *testing.T) {
-	// create n accounts randomly
 	for i := 0; i < 10; i++ {
 		createRandomAccount(t)
 	}
