@@ -10,3 +10,12 @@ https://github.com/kyleconroy/sqlc
 
 1. docker pull postgres:12-alpine
 2. docker run --name postgres12 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
+
+
+## Create migration files command with o/p:
+nitin@nitin:~/Public/go/src/simplebank$ migrate create -ext sql -dir db/migration -seq add_users
+/home/nitin/Public/go/src/simplebank/db/migration/000002_add_users.up.sql
+/home/nitin/Public/go/src/simplebank/db/migration/000002_add_users.down.sql
+
+
+
