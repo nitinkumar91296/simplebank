@@ -21,3 +21,9 @@ https://github.com/kyleconroy/sqlc
 1. nitin@nitin:~/Public/go/src/simplebank$ migrate create -ext sql -dir db/migration -seq add_users
 2. /home/nitin/Public/go/src/simplebank/db/migration/000002_add_users.up.sql
 3. /home/nitin/Public/go/src/simplebank/db/migration/000002_add_users.down.sql
+
+
+###### Make start.sh and wait-for.sh files executable:
+
+chmod +x wait-for.sh
+chmod +x start.sh
